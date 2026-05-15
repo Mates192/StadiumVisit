@@ -4,13 +4,21 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.stadiumvisit.data.seed.SeedStadiums
 
-@Database(entities = [Stadium::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Stadium::class, User::class, StadiumUserState::class],
+    version = 2,
+    exportSchema = false
+)
+@TypeConverters(Converters::class)
 abstract class StadiumDatabase : RoomDatabase() {
 
     abstract fun stadiumDao(): StadiumDao
+    abstract fun userDao(): UserDao
+    abstract fun stadiumUserStateDao(): StadiumUserStateDao
 
     companion object {
         @Volatile private var instance: StadiumDatabase? = null
@@ -21,7 +29,7 @@ abstract class StadiumDatabase : RoomDatabase() {
                     context.applicationContext,
                     StadiumDatabase::class.java,
                     "stadium_visit.db"
-                ).addCallback(object : Callback() {
+                ).fallbackToDestructiveMigration().addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
                         ioThread {
