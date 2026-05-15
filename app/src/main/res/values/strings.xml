@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Stadium Visit</string>
+    <string name="google_maps_api_key">YOUR_GOOGLE_MAPS_API_KEY</string>
+    <string name="skeleton_title">Stadium Visit MVP</string>
+    <string name="skeleton_subtitle">Mapa + lokální databáze stadionů je připravená.</string>
+</resources>
