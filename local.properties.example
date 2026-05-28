@@ -1,0 +1,5 @@
+## Copy this file to local.properties and set your local values.
+## Never commit local.properties (contains secrets and machine-specific paths).
+
+sdk.dir=/path/to/Android/Sdk
+MAPS_API_KEY=REPLACE_WITH_YOUR_GOOGLE_MAPS_API_KEY
