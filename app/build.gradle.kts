@@ -1,3 +1,8 @@
+
+val mapsApiKey = (project.findProperty("MAPS_API_KEY") as String?)
+    ?: System.getenv("MAPS_API_KEY")
+    ?: ""
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -7,16 +12,6 @@ plugins {
 android {
     namespace = "com.stadiumvisit"
     compileSdk = 34
-
-    defaultConfig {
-        applicationId = "com.stadiumvisit"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "0.1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 
     buildTypes {
         release {
@@ -37,6 +32,17 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+
+    defaultConfig {
+        applicationId = "com.stadiumvisit"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "0.1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 }
 
